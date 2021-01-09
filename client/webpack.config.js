@@ -29,8 +29,15 @@ module.exports = {
         }
       },
       {
-        test: /\.(scss|css)$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        test: /\.s[ac]ss$/i,
+        use: [
+          // creates `style` nodes from JS strings
+          "style-loader",
+          // translates CSS into CommonJS
+          "css-loader",
+          // compiles SASS to CSS
+          "sass-loader"
+        ]
       }
     ]
   }

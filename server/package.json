@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "performance-monitor-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,6 +8,11 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "JD",
+  "license": "ISC",
+  "dependencies": {
+    "farmhash": "^3.2.0",
+    "socket.io": "^3.0.4",
+    "socket.io-redis": "^6.0.1"
+  }
 }

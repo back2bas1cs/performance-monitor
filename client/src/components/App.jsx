@@ -1,9 +1,13 @@
 import React from "react";
+// Component(s)
+// import NavBar from "./Navbar/NavBar.jsx";
+import DataGraph from "./DataGraph/DataGraph.jsx";
 
 function App() {
   return (
     <div>
-      <h1>mmmmmm</h1>
+      {/* <NavBar /> */}
+      <DataGraph />
     </div>
   );
 }

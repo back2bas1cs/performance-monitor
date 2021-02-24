@@ -5,14 +5,16 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon cluster.js"
   },
   "keywords": [],
   "author": "JD",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "farmhash": "^3.2.0",
-    "socket.io": "^3.0.4",
+    "mongoose": "^5.11.17",
+    "socket.io": "^3.1.1",
     "socket.io-redis": "^6.0.1"
   }
 }

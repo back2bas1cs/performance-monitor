@@ -2,15 +2,17 @@
   "name": "performance-monitor-agent",
   "version": "1.0.0",
   "description": "",
-  "main": "agent.js",
+  "main": "performanceData.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node performanceData.js"
   },
   "keywords": [],
   "author": "JD",
   "license": "ISC",
   "dependencies": {
     "farmhash": "^3.2.0",
+    "nodemon": "^2.0.7",
     "socket.io-client": "^3.0.4"
   }
 }

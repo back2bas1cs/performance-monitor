@@ -1,5 +1,5 @@
 import React from "react";
-// Component(s)
+// Component(s):
 // import NavBar from "./Navbar/NavBar.jsx";
 import DataGraph from "./DataGraph/DataGraph.jsx";
 

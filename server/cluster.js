@@ -7,7 +7,8 @@ const cluster = require("cluster");
 const net = require("net");
 // Project Module(s):
 const socketServer = require("./socketServer.js");
-const PORT = require("../config/serverConfig.js").PORT;
+const CLIENT_PORT = require("../config/clientConfig.js").PORT;
+const SERVER_PORT = require("../config/serverConfig.js").PORT;
 
 const numberOfProcesses = require("os").cpus().length;
 
@@ -46,7 +47,7 @@ if (cluster.isMaster) {
       // pass worker for this connection's source IP to connection
       worker.send("sticky-session:connection", connection);
     })
-    .listen(PORT);
+    .listen(SERVER_PORT);
 } else {
   // NOTE: don't use port here because the "master" is listening on it for us (i.e. acts as "proxy")
   const app = new express();
@@ -55,7 +56,12 @@ if (cluster.isMaster) {
 
   // protect our internal server from exposure 
   const server = app.listen(0, "localhost");
-  const io = socket_io(server);
+  const io = socket_io(server, {
+    cors: {
+      origin: `http://localhost:${CLIENT_PORT}`,
+      methods: ["GET", "POST"]
+    }
+  });
 
   // tell 'Socket.IO' to use the 'Redis' adapter 
   io.adapter(redis({ host: "localhost", port: 6379 }));

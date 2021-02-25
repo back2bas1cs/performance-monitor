@@ -4,25 +4,26 @@ const CPU = require("./models/CPU.js");
 
 mongoose.connect("mongodb://127.0.0.1/CPUPerformanceData", { useNewUrlParser: true }); 
 
-
 function socketServer(io, socket) {
   let macAddress = null;
 
   socket.on("nodeClientAuth", key => {
     // valid node client has joined server
-    if (key === "nodeClient") socket.join("nodeClients");
-    else if (key = "clientManager") socket.join('clientManager') // valid node client manager
-    else socket.disconnect(true);
+    if (key === "node-client") socket.join("nodeClients");
+    else if (key === "client-manager") { // valid node client manager
+      socket.join('clientManager') 
+      console.log("react client manager joined!");
+    } else socket.disconnect(true);
   });
 
   socket.on("initializePerformanceData", async data => {
     macAddress = data.macAddress;
     const mongooseResponse = await checkDBForCPU(data);
-    console.log(mongooseResponse);  
+    // console.log(mongooseResponse);  
   });
 
   socket.on("performanceData", data => {
-    console.log(data);
+    // console.log(data);
   });
 }
 
@@ -38,9 +39,9 @@ function checkDBForCPU(allData) {
         } else if (!doc) { // add CPU/machine to DB
           const cpu = new CPU(allData);
           cpu.save();
-          resolve("Added New CPU to DB!");
+          resolve("Added New CPU to DB!"); 
         } else { // CPU/machine has already been added to DB
-          resolve("CPU Already Registered (Found In DB)!");  
+          resolve("Found Registered CPU (in DB)!");  
         }
       }
     );

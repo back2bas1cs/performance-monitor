@@ -22,7 +22,7 @@ socket.on("connect", () => {
   else if (!/[^0:]/.test(macAddress)) console.log("CPU/Machine Is OFFLINE!");
     
   // simple single-key string authorization for new clients/CPUs/machines
-  socket.emit("nodeClientAuth", "nodeClient");
+  socket.emit("nodeClientAuth", "node-client");
 
   aggregatePerformanceData().then(allData => {
     allData.macAddress = macAddress;
@@ -96,7 +96,6 @@ function generateAverageCPUTimes() {
     idle: idleTime / cpuCores.length 
   };
 }
-
 
 // CPU Load: a count of the number of processes using or waiting for the CPU at a single point in time
 function generateAverageLoad() {
